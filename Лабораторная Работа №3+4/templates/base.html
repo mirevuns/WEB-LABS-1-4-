@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Django Carts{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">ЛР3+ЛР4: Корзины</div>
+        <nav class="nav">
+          <a class="nav__link" href="/carts/">/carts/</a>
+          <a class="nav__link" href="/admin/">admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
+

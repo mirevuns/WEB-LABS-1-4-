@@ -1,0 +1,13 @@
+<div class="toolbar">
+  <div class="sort">
+    <span class="muted">Сортировка:</span>
+    {% for link in sort_links %}
+      <a
+        href="{{ link.url }}"
+        class="sort__link{% if link.active %} sort__link--active{% endif %}"
+      >
+        {{ link.label }}
+      </a>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load books_extras %}
+
+{% block title %}Каталог книг{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h1>Каталог книг</h1>
+
+    {% include "books/_toolbar.html" %}
+
+    <p class="muted">
+      Всего книг: {% books_count books %}.
+      Сегодня: {{ today|date:"d.m.Y" }}.
+    </p>
+
+    {% if books %}
+      <ul class="grid">
+        {% for book in books %}
+          <li class="item">
+            <div class="item__head">
+              <h3 class="item__title">{{ book.title|capfirst }}</h3>
+              {% badge_available book.is_available %}
+            </div>
+
+            <div class="item__meta">
+              <div>Автор: {{ book.author|initials }}</div>
+              <div>Год: {{ book.year }} {% year_category book.year %}</div>
+              <div>Цена: {{ book.price|rub }}</div>
+              <div class="muted">Добавлено: {{ book.created_at|date:"d.m.Y H:i" }}</div>
+            </div>
+          </li>
+        {% empty %}
+          <li>Список пуст.</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Пока нет ни одной книги. Добавьте записи в разделе администрирования.</p>
+    {% endif %}
+  </section>
+{% endblock %}

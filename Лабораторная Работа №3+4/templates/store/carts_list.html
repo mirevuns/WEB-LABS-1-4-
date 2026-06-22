@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Список корзин{% endblock %}
+
+{% block content %}
+  <div class="page-head">
+    <h1 class="h1">Список корзин</h1>
+    <div class="muted">Всего: {{ carts|length }}</div>
+  </div>
+
+  <div class="card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Покупатель</th>
+          <th>Товары</th>
+          <th>Создана</th>
+          <th>Статус</th>
+          <th class="right">Кол-во</th>
+          <th class="right">Сумма</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cart in carts %}
+          <tr class="{% if cart.status == 'inactive' %}row-inactive{% endif %}">
+            <td class="mono">{{ cart.id }}</td>
+            <td>
+              <div class="strong">{{ cart.customer.full_name }}</div>
+              {% if cart.customer.email %}<div class="muted">{{ cart.customer.email }}</div>{% endif %}
+            </td>
+            <td>
+              {% if cart.items.all %}
+                <ul class="items">
+                  {% for item in cart.items.all %}
+                    <li>
+                      <span class="strong">{{ item.product.name }}</span>
+                      <span class="muted">× {{ item.quantity }}</span>
+                      <span class="muted">({{ item.product.price }})</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <span class="muted">—</span>
+              {% endif %}
+            </td>
+            <td class="mono">{{ cart.created_at|date:"d.m.Y H:i" }}</td>
+            <td>
+              <span class="badge {% if cart.status == 'inactive' %}badge--red{% else %}badge--green{% endif %}">
+                {{ cart.get_status_display }}
+              </span>
+            </td>
+            <td class="right mono">{{ cart.total_quantity }}</td>
+            <td class="right mono">{{ cart.total_price }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="7" class="muted">Корзин пока нет.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+

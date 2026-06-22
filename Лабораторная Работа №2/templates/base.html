@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Мини‑сайт{% endblock %}</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8ecff; --muted:#aab2d5; --accent:#8fd3ff; --ok:#31d0aa; --no:#ff6b6b; }
+      body { margin:0; font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:linear-gradient(180deg, #070a14, var(--bg)); color:var(--text); }
+      a { color:var(--accent); text-decoration:none; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 28px 16px; }
+      .topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: 18px; }
+      .brand { font-weight:700; letter-spacing:.2px; }
+      .card { background: color-mix(in oklab, var(--card), black 15%); border:1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 18px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+      .muted { color: var(--muted); }
+      .grid { list-style:none; padding:0; margin:16px 0 0; display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+      .item { background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius: 12px; padding: 14px; }
+      .item__head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+      .item__title { margin:0; font-size: 18px; }
+      .item__meta { margin-top: 10px; display:grid; gap: 4px; }
+      .badge { display:inline-flex; align-items:center; padding: 4px 8px; border-radius: 999px; font-size: 12px; border:1px solid rgba(255,255,255,.12); }
+      .badge--ok { background: color-mix(in oklab, var(--ok), black 70%); color: #d9fff5; }
+      .badge--no { background: color-mix(in oklab, var(--no), black 70%); color: #ffe3e3; }
+      .chip { display:inline-flex; align-items:center; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: rgba(143, 211, 255, .12); border:1px solid rgba(143, 211, 255, .18); margin-left: 6px; }
+      .toolbar { display:flex; align-items:center; justify-content:space-between; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+      .sort { display:flex; align-items:center; flex-wrap: wrap; gap: 8px; }
+      .sort__link { padding: 4px 10px; border-radius: 999px; border:1px solid rgba(255,255,255,.1); font-size: 14px; color: var(--muted); }
+      .sort__link:hover { color: var(--text); border-color: rgba(143, 211, 255, .35); }
+      .sort__link--active { color: var(--text); background: rgba(143, 211, 255, .12); border-color: rgba(143, 211, 255, .35); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      {% include "partials/_topbar.html" %}
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
