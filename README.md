@@ -14,15 +14,3 @@
 - `2 lab (1).mp4`, `2 lab (2).mp4` — лабораторная работа №2
 - `3 + 4 lab.mp4` — лабораторные работы №3 и №4
 
-## Запуск Django-проектов
-
-```bash
-cd "Лабораторная Работа №2"
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
-
-Аналогично для `Лабораторная Работа №3+4`.
